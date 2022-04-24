@@ -1,0 +1,27 @@
+syntax = "proto3";
+package game.client.grpc;
+
+message DataRequest {
+  int32 id = 1;
+}
+
+message DataResponse {
+  string object = 1;
+  repeated string objects = 2;
+}
+
+service DataService {
+  rpc swap(DataRequest) returns (DataResponse);
+}
+
+service DataServicRequestStream {
+  rpc swapReqStream(stream DataRequest) returns (DataResponse);
+}
+
+service DataServiceResponseStream {
+  rpc swapResStream(DataRequest) returns (stream DataResponse);
+}
+
+service DataServiceAllStream {
+  rpc swapStream(stream DataRequest) returns (stream DataResponse);
+}
